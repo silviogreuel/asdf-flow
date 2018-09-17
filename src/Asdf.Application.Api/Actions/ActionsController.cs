@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Asdf.Application.Api.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asdf.Application.Api.Actions
 {
-    [Route("api/[controller]")]
+    [Route("api/actions")]
     [ApiController]
-    public class ActionsController : ControllerBase
+    public class ActionsController : AuthorizeController
     {
     }
 }

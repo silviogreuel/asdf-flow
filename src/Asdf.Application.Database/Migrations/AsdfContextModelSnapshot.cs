@@ -50,7 +50,13 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<Guid>("Token");
+
+                    b.Property<long?>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Devices");
                 });
@@ -126,6 +132,26 @@ namespace Asdf.Application.Database.Migrations
                     b.ToTable("Triggers");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Trigger");
+                });
+
+            modelBuilder.Entity("Asdf.Domain.Users.User", b =>
+                {
+                    b.Property<long?>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("AuthId");
+
+                    b.Property<string>("AuthProvider");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid?>("Token");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Asdf.Domain.Actions.AttributeNode", b =>
@@ -227,6 +253,13 @@ namespace Asdf.Application.Database.Migrations
                     b.HasOne("Asdf.Domain.Actions.Node", "Pass")
                         .WithOne()
                         .HasForeignKey("Asdf.Domain.Actions.Node", "PassId");
+                });
+
+            modelBuilder.Entity("Asdf.Domain.Devices.Device", b =>
+                {
+                    b.HasOne("Asdf.Domain.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Asdf.Domain.Flows.Flow", b =>

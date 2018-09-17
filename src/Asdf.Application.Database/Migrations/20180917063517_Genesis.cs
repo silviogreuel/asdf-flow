@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Asdf.Application.Database.Migrations
 {
@@ -6,19 +7,6 @@ namespace Asdf.Application.Database.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Devices",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Devices", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Nodes",
                 columns: table => new
@@ -75,6 +63,23 @@ namespace Asdf.Application.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Token = table.Column<Guid>(nullable: true),
+                    AuthId = table.Column<long>(nullable: true),
+                    AuthProvider = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Triggers",
                 columns: table => new
                 {
@@ -118,6 +123,27 @@ namespace Asdf.Application.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Devices",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    Token = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Devices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Devices_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Flows",
                 columns: table => new
                 {
@@ -136,6 +162,11 @@ namespace Asdf.Application.Database.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devices_UserId",
+                table: "Devices",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FieldTemplates_NodeTemplateId",
@@ -175,6 +206,9 @@ namespace Asdf.Application.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Flows");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "NodeTemplates");

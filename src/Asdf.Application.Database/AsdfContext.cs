@@ -6,6 +6,7 @@ using Asdf.Domain.Templates;
 using Asdf.Domain.Flows;
 using Asdf.Domain.Triggers;
 using Asdf.Domain.Devices;
+using Asdf.Domain.Users;
 
 namespace Asdf.Application.Database
 {
@@ -31,8 +32,11 @@ namespace Asdf.Application.Database
         public DbSet<Trigger> Triggers { get; set; }
         public DbSet<ButtonTrigger> Buttons { get; set; }
 
-        //Device
+        //Devices
         public DbSet<Device> Devices { get; set; }
+
+        //Users
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

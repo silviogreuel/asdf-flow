@@ -8,7 +8,7 @@ namespace Asdf.Application.Api.Controllers
     [Authorize]
     public class ProfileController : ControllerBase
     {
-        [Route("")]
+        [Route(""), HttpGet]
         public IActionResult Index()
         {
             return new JsonResult(new

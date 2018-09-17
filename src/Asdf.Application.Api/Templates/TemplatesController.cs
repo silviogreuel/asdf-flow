@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Asdf.Application.Api.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asdf.Application.Api.Templates
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TemplatesController : ControllerBase
+    public class TemplatesController : AuthorizeController
     {
     }
 }
