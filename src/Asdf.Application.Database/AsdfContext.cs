@@ -7,7 +7,7 @@ using Asdf.Domain.Flows;
 using Asdf.Domain.Triggers;
 using Asdf.Domain.Devices;
 
-namespace Asdf.Playground
+namespace Asdf.Application.Database
 {
     public class AsdfContext : DbContext
     {
