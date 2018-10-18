@@ -1,6 +1,6 @@
 {
-	"Username": "mqtt",
-	"Password": "mqtt",
+	"Username": "iot",
+	"Password": "iot",
 	"VirtualHost": "/",
 	"Port": 5672,
 	"Hostnames": [ "localhost" ],

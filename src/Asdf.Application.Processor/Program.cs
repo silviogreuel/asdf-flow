@@ -52,7 +52,9 @@ class Program
 
             _bus = RawRabbitFactory.CreateSingleton(options);
 
+            await _bus.DeclareQueueAsync<string>();
             await _bus.BindQueueAsync("string", "amq.topic", "*");
+
             await _bus.SubscribeAsync<string>(async msg =>
             {
                Console.WriteLine(msg);

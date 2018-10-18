@@ -1,9 +1,9 @@
 {
-	"Username": "mqtt",
-	"Password": "mqtt",
+	"Username": "iot",
+	"Password": "iot",
 	"VirtualHost": "/",
 	"Port": 5672,
-	"Hostnames": [ "localhost" ],
+	"Hostnames": [ "broker" ],
 	"RequestTimeout": "00:00:10",
 	"PublishConfirmTimeout": "00:00:01",
 	"RecoveryInterval": "00:00:10",
