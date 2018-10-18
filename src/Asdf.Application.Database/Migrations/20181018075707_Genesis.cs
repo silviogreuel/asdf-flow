@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Asdf.Application.Database.Migrations
 {
@@ -12,7 +13,7 @@ namespace Asdf.Application.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     PassId = table.Column<long>(nullable: true),
                     FailId = table.Column<long>(nullable: true),
@@ -52,7 +53,7 @@ namespace Asdf.Application.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     ActivatorType = table.Column<string>(nullable: true),
                     ActivatorAssembly = table.Column<string>(nullable: true)
@@ -67,7 +68,7 @@ namespace Asdf.Application.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Token = table.Column<Guid>(nullable: true),
@@ -84,7 +85,7 @@ namespace Asdf.Application.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     RootId = table.Column<long>(nullable: true),
                     Context = table.Column<string>(nullable: true),
@@ -106,10 +107,10 @@ namespace Asdf.Application.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    NodeTemplateId = table.Column<long>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: true),
-                    NodeTemplateId = table.Column<long>(nullable: true)
+                    Type = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -127,7 +128,7 @@ namespace Asdf.Application.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Token = table.Column<Guid>(nullable: false),
                     UserId = table.Column<long>(nullable: true)
@@ -148,7 +149,7 @@ namespace Asdf.Application.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     TriggerId = table.Column<long>(nullable: true)
                 },

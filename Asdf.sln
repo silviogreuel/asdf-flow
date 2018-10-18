@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asdf.Application.Database",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asdf.Application.Processor", "src\Asdf.Application.Processor\Asdf.Application.Processor.csproj", "{206F24A1-BAA6-4507-BE62-FCA611394158}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asdf.Application.Database.Migrator", "src\Asdf.Application.Database.Migrator\Asdf.Application.Database.Migrator.csproj", "{8FEA94B1-4DCF-4311-8237-499237512B5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{206F24A1-BAA6-4507-BE62-FCA611394158}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{206F24A1-BAA6-4507-BE62-FCA611394158}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{206F24A1-BAA6-4507-BE62-FCA611394158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FEA94B1-4DCF-4311-8237-499237512B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FEA94B1-4DCF-4311-8237-499237512B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FEA94B1-4DCF-4311-8237-499237512B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FEA94B1-4DCF-4311-8237-499237512B5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{D9EE720E-55DD-4AFC-890E-C4310831B247} = {4B978E20-5AE1-471F-A7BC-6E5B868C0AEF}
 		{87767297-1506-4C92-84E7-5A7C4CC44957} = {4B978E20-5AE1-471F-A7BC-6E5B868C0AEF}
 		{206F24A1-BAA6-4507-BE62-FCA611394158} = {4B978E20-5AE1-471F-A7BC-6E5B868C0AEF}
+		{8FEA94B1-4DCF-4311-8237-499237512B5A} = {4B978E20-5AE1-471F-A7BC-6E5B868C0AEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8DF5698C-290B-49A7-93CD-63A5DA8B1218}

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Asdf.Application.Database.Seeds;
 using Newtonsoft.Json;
 using Asdf.Domain.Actions;
 using Asdf.Domain.Templates;
@@ -42,7 +43,8 @@ namespace Asdf.Application.Database
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseSqlite("Data Source=d:\\asdf.db");
+                .UseNpgsql("Host=localhost;Database=iot;Username=iot;Password=iot", o => o.MigrationsAssembly("Asdf.Application.Database"))
+                .EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -69,6 +71,10 @@ namespace Asdf.Application.Database
                 b.HasOne(p => p.Pass).WithOne().IsRequired(false);
                 b.HasOne(p => p.Fail).WithOne().IsRequired(false);
             });
+
+            modelBuilder
+                .SeedNodeTemplates()
+                .SeedFieldTemplates();
         }
     }
 }

@@ -13,11 +13,16 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.3" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Asdf.Domain\Asdf.Domain.csproj" />
     <ProjectReference Include="..\Asdf.Kernel\Asdf.Kernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

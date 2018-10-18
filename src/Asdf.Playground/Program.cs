@@ -15,6 +15,7 @@ namespace Asdf.Playground
         static async Task Main(string[] args)
         {
             //Execute trigger (/buttons/1/trigger)
+            /*
             using (var db = new AsdfContext())
             {
                 long? id = 1;
@@ -23,6 +24,7 @@ namespace Asdf.Playground
 
                 db.SaveChanges();
             }
+            */
 
 
             //Base Template

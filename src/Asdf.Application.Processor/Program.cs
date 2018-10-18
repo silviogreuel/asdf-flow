@@ -11,7 +11,19 @@ using Serilog;
 
 namespace Asdf.Application.Processor
 {
-    class Program
+    public static class Env
+    {
+        public static string Name()
+        {
+#if (DEBUG)
+            return "Debug";
+#else
+            return "Release";
+#endif
+        }
+}
+
+class Program
     {
         private static IBusClient _bus;
 
@@ -28,7 +40,7 @@ namespace Asdf.Application.Processor
 
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("rawrabbit.json")
+                .AddJsonFile($"rawrabbit.{Env.Name()}.json")
                 .Build()
                 .Get<RawRabbitConfiguration>();
 
