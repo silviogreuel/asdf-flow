@@ -96,6 +96,20 @@ namespace Asdf.Application.Database.Migrations
                     b.HasIndex("NodeTemplateId");
 
                     b.ToTable("FieldTemplates");
+
+                    b.HasData(
+                        new { Id = 1L, Name = "Name", NodeTemplateId = 1L, Type = "System.String" },
+                        new { Id = 2L, Name = "Url", NodeTemplateId = 1L, Type = "System.String" },
+                        new { Id = 3L, Name = "Field", NodeTemplateId = 1L, Type = "System.String" },
+                        new { Id = 4L, Name = "Name", NodeTemplateId = 2L, Type = "System.String" },
+                        new { Id = 5L, Name = "Url", NodeTemplateId = 2L, Type = "System.String" },
+                        new { Id = 6L, Name = "Content", NodeTemplateId = 2L, Type = "System.String" },
+                        new { Id = 7L, Name = "Content-Type", NodeTemplateId = 2L, Type = "System.String" },
+                        new { Id = 8L, Name = "Name", NodeTemplateId = 3L, Type = "System.String" },
+                        new { Id = 9L, Name = "Url", NodeTemplateId = 3L, Type = "System.String" },
+                        new { Id = 10L, Name = "Content", NodeTemplateId = 3L, Type = "System.String" },
+                        new { Id = 11L, Name = "Content-Type", NodeTemplateId = 3L, Type = "System.String" }
+                    );
                 });
 
             modelBuilder.Entity("Asdf.Domain.Templates.NodeTemplate", b =>
@@ -112,6 +126,12 @@ namespace Asdf.Application.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NodeTemplates");
+
+                    b.HasData(
+                        new { Id = 1L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpGetNode", Name = "HTTP GET" },
+                        new { Id = 2L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpPostNode", Name = "HTTP POST" },
+                        new { Id = 3L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpGetNode", Name = "ATTRIBUTE" }
+                    );
                 });
 
             modelBuilder.Entity("Asdf.Domain.Triggers.Trigger", b =>
@@ -148,7 +168,11 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<string>("Email");
 
+                    b.Property<string>("JwtToken");
+
                     b.Property<string>("Name");
+
+                    b.Property<int>("Pin");
 
                     b.Property<Guid?>("Token");
 

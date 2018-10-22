@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asdf.Application.Database",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asdf.Application.Processor", "src\Asdf.Application.Processor\Asdf.Application.Processor.csproj", "{206F24A1-BAA6-4507-BE62-FCA611394158}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asdf.Application.Database.Migrator", "src\Asdf.Application.Database.Migrator\Asdf.Application.Database.Migrator.csproj", "{8FEA94B1-4DCF-4311-8237-499237512B5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asdf.Application.Database.Migrator", "src\Asdf.Application.Database.Migrator\Asdf.Application.Database.Migrator.csproj", "{8FEA94B1-4DCF-4311-8237-499237512B5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

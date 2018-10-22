@@ -5,7 +5,7 @@ namespace Asdf.Application.Api.Flows
 {
     [Route("api/flows")]
     [ApiController]
-    public class FlowsController : AuthorizeController
+    public class HealthController : AuthorizeController
     {
     }
 }

@@ -1,0 +1,1 @@
+docker run -it --rm --network="host" -p 80:80 silviogreuel/asdf-flow-api

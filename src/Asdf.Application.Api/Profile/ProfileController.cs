@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Asdf.Application.Api.Controllers
+namespace Asdf.Application.Api.Profile
 {
     [Route("profile")]
     [ApiController]

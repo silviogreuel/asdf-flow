@@ -1,13 +1,15 @@
-﻿using Asdf.Application.Api.Shared;
+﻿using System.Linq;
+using Asdf.Application.Api.Shared;
 using Asdf.Application.Database;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asdf.Application.Api.Devices
 {
     [Route("api/devices")]
     [ApiController]
-    public class DevicesController : AuthorizeController
+    public partial class DevicesController : AuthorizeController
     {
         private readonly AsdfContext db;
 
@@ -30,6 +32,16 @@ namespace Asdf.Application.Api.Devices
             db.Devices.Update(device);
             await db.SaveChangesAsync();
             return new UpdateDeviceResponse();
+        }
+
+        [HttpGet]
+        public async Task<ListDeviceResponse> ListDevices()
+        {
+            var devices = await db.Devices.ToListAsync();
+            return new ListDeviceResponse()
+            {
+                Devices = devices
+            };
         }
     }
 }

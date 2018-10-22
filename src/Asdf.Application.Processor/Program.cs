@@ -57,7 +57,8 @@ class Program
 
             await _bus.SubscribeAsync<string>(async msg =>
             {
-               Console.WriteLine(msg);
+                Console.WriteLine(msg);
+                await Task.CompletedTask;
             });
         }
     }

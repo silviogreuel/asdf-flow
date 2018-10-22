@@ -7,5 +7,10 @@ namespace Asdf.Application.Api.Triggers
     [ApiController]
     public class TriggersController : AuthorizeController
     {
+        [HttpGet("sample")]
+        public object GetSample()
+        {
+            return new {data = "penis"};
+        }
     }
 }

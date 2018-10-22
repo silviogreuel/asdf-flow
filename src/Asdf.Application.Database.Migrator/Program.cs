@@ -7,14 +7,12 @@ namespace Asdf.Application.Database.Migrator
 {
     public class MigrationContext : AsdfContext
     {
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-                /*
-            modelBuilder
-                .SeedNodeTemplates()
-                .SeedFieldTemplates();
-                */
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseNpgsql("Host=localhost;Database=iot;Username=admin;Password=admin", o => o.MigrationsAssembly("Asdf.Application.Database"))
+                .EnableSensitiveDataLogging();
         }
     }
 
