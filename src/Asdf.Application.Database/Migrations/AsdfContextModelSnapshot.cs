@@ -73,9 +73,13 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<long?>("TriggerId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("TriggerId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Flows");
                 });
@@ -293,6 +297,10 @@ namespace Asdf.Application.Database.Migrations
                     b.HasOne("Asdf.Domain.Triggers.Trigger", "Trigger")
                         .WithMany()
                         .HasForeignKey("TriggerId");
+
+                    b.HasOne("Asdf.Domain.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Asdf.Domain.Templates.FieldTemplate", b =>

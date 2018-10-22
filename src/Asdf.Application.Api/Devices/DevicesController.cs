@@ -26,7 +26,7 @@ namespace Asdf.Application.Api.Devices
         }
 
         [Route("{id}"), HttpDelete]
-        public async Task<IActionResult> DelteDevice([FromRoute]long id)
+        public async Task<IActionResult> DeleteDevice([FromRoute]long id)
         {
             var device = await db.Devices.FirstAsync(d => d.User.Id == User.GetUserId());
             db.Devices.Remove(device);

@@ -152,7 +152,8 @@ namespace Asdf.Application.Database.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
-                    TriggerId = table.Column<long>(nullable: true)
+                    TriggerId = table.Column<long>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -161,6 +162,12 @@ namespace Asdf.Application.Database.Migrations
                         name: "FK_Flows_Triggers_TriggerId",
                         column: x => x.TriggerId,
                         principalTable: "Triggers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Flows_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -214,6 +221,11 @@ namespace Asdf.Application.Database.Migrations
                 column: "TriggerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Flows_UserId",
+                table: "Flows",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Nodes_FailId",
                 table: "Nodes",
                 column: "FailId",
@@ -243,13 +255,13 @@ namespace Asdf.Application.Database.Migrations
                 name: "Flows");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "NodeTemplates");
 
             migrationBuilder.DropTable(
                 name: "Triggers");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Nodes");

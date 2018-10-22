@@ -7,6 +7,7 @@ using Asdf.Domain.Flows;
 using Asdf.Domain.Triggers;
 using Asdf.Domain.Templates;
 using Asdf.Application.Database;
+using Asdf.Domain.Users;
 
 namespace Asdf.Playground
 {
@@ -80,7 +81,7 @@ namespace Asdf.Playground
             //Creating new flow
             using (var db = new AsdfContext())
             {
-                var flow = new Flow("Request CNPJ info");
+                var flow = new Flow(new User(),"Request CNPJ info");
                 await db.AddAsync(flow);
                 await db.SaveChangesAsync();
             }
