@@ -12,7 +12,7 @@ namespace Asdf.Application.Api.Auth
 {
     public interface IAuthService
     {
-        Task<User> Register(string name, string authProvider);
+        Task<User> Register(string id, string name, string authProvider);
         User Authenticate(string name, int pin);
     }
 
@@ -25,13 +25,13 @@ namespace Asdf.Application.Api.Auth
             this.db = db;
         }
 
-        public async Task<User> Register(string name, string authProvider)
+        public async Task<User> Register(string id, string name, string authProvider)
         {
-            var user = db.Users.Where(u => u.Name == name && u.AuthProvider == authProvider).FirstOrDefault();
+            var user = db.Users.Where(u => u.Id == id && u.Name == name && u.AuthProvider == authProvider).FirstOrDefault();
 
             if (user == null)
             {
-                user = new User(name, email: null)
+                user = new User(id, name, email: null)
                 {
                     AuthProvider = authProvider,
                 };

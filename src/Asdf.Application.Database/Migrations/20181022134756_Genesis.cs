@@ -67,11 +67,10 @@ namespace Asdf.Application.Database.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    Pin = table.Column<int>(nullable: false),
+                    Pin = table.Column<int>(nullable: true),
                     Token = table.Column<Guid>(nullable: true),
                     AuthId = table.Column<long>(nullable: true),
                     AuthProvider = table.Column<string>(nullable: true),
@@ -133,7 +132,7 @@ namespace Asdf.Application.Database.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Token = table.Column<Guid>(nullable: false),
-                    UserId = table.Column<long>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

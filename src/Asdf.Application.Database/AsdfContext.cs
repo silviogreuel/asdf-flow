@@ -50,6 +50,12 @@ namespace Asdf.Application.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>(b =>
+            {
+                b.Property(p => p.Id)
+                    .ValueGeneratedNever();
+            });
+
             modelBuilder.Entity<AttributeNode>(b =>
             {
                 b.Property(e => e.Attributes)

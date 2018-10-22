@@ -3,12 +3,12 @@ using System;
 
 namespace Asdf.Domain.Users
 {
-    public class User : IHaveId<long?>
+    public class User : IHaveId<string>
     {
-        public long? Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public int Pin { get; set; }
+        public int? Pin { get; set; }
 
         public Guid? Token { get; set; }
 
@@ -18,12 +18,13 @@ namespace Asdf.Domain.Users
 
         public User() { }
 
-        public User(string name, string email)
-            : this(name, email, Kernel.Utils.Pin.Generate(), Guid.NewGuid())
+        public User(string id, string name, string email)
+            : this(id, name, email, Kernel.Utils.Pin.Generate(), Guid.NewGuid())
         { }
 
-        public User(string name, string email, int pin, Guid token)
+        public User(string id, string name, string email, int pin, Guid token)
         {
+            this.Id = id;
             this.Name = name;
             this.Email = email;
             this.Pin = pin;

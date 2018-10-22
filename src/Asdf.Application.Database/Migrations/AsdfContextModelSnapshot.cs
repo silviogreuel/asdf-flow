@@ -55,7 +55,7 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<Guid>("Token");
 
-                    b.Property<long?>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -159,8 +159,7 @@ namespace Asdf.Application.Database.Migrations
 
             modelBuilder.Entity("Asdf.Domain.Users.User", b =>
                 {
-                    b.Property<long?>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("Id");
 
                     b.Property<long?>("AuthId");
 
@@ -172,7 +171,7 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Pin");
+                    b.Property<int?>("Pin");
 
                     b.Property<Guid?>("Token");
 

@@ -1,20 +1,33 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Security.Claims;
+using Asdf.Application.Api.Extensions;
+using Asdf.Application.Database;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asdf.Application.Api.Profile
 {
-    [Route("profile")]
+    [Route("api/profile")]
     [ApiController]
     [Authorize]
     public class ProfileController : ControllerBase
     {
-        [Route(""), HttpGet]
+        private AsdfContext db;
+
+        public ProfileController(AsdfContext db)
+        {
+            this.db = db;
+        }
+        
+        [HttpGet]
         public IActionResult Index()
         {
-            return new JsonResult(new
+            var user = db.Users.Find(User.GetUserId());
+
+            return Ok(new
             {
-                User.Identity.Name,
-                User.Claims,
+                id = user.Id,
+                name = user.Name,
+                token = user.Token
             });
         }
     }

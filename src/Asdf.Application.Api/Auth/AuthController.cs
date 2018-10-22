@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Asdf.Application.Api.Extensions;
 using Asdf.Application.Database;
 using DomainUser = Asdf.Domain.Users.User;
 using Microsoft.AspNetCore.Authentication;
@@ -25,7 +27,7 @@ namespace Asdf.Application.Api.Auth
 
         [Route("signin/{provider}")]
         public IActionResult SignInProvider(string provider, string returnUrl = null) =>
-            Challenge(new AuthenticationProperties { RedirectUri = "http://localhost:8081/account" }, provider);
+            Challenge(new AuthenticationProperties { RedirectUri = "/auth/signin" }, provider);
 
         [Route("signout")]
         public async Task<IActionResult> SignOut()
@@ -38,10 +40,11 @@ namespace Asdf.Application.Api.Auth
         [Authorize]
         public async Task<IActionResult> SignIn()
         {
-            var name = this.User.Identity.Name;
-            var authProvider = this.User.Identity.AuthenticationType;
+            var id = this.User.GetUserId();
+            var name = this.User.GetUserName();
+            var authProvider = this.User.GetAuthenticationType();
 
-            var user = auth.Register(name, authProvider);            
+            var user = await auth.Register(id, name, authProvider);            
             
             return Ok(user);
         }
