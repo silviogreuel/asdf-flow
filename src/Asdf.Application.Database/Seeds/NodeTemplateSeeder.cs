@@ -29,8 +29,15 @@ namespace Asdf.Application.Database.Seeds
                     {
                         Id = 3,
                         Name = "ATTRIBUTE",
-                        ActivatorType = typeof(HttpGetNode).FullName,
-                        ActivatorAssembly = typeof(HttpGetNode).Assembly.FullName,
+                        ActivatorType = typeof(AttributeNode).FullName,
+                        ActivatorAssembly = typeof(AttributeNode).Assembly.FullName,
+                    },
+                    new NodeTemplate
+                    {
+                        Id = 4,
+                        Name = "MQTT PUBLISH",
+                        ActivatorType = typeof(MqttPublishNode).FullName,
+                        ActivatorAssembly = typeof(MqttPublishNode).Assembly.FullName,
                     });
 
             return modelBuilder;

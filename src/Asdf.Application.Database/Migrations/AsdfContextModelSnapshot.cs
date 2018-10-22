@@ -33,6 +33,8 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<long?>("PassId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FailId")
@@ -40,6 +42,8 @@ namespace Asdf.Application.Database.Migrations
 
                     b.HasIndex("PassId")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Nodes");
 
@@ -95,6 +99,8 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<string>("Type");
 
+                    b.Property<string>("Value");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NodeTemplateId");
@@ -110,9 +116,11 @@ namespace Asdf.Application.Database.Migrations
                         new { Id = 6L, Name = "Content", NodeTemplateId = 2L, Type = "System.String" },
                         new { Id = 7L, Name = "Content-Type", NodeTemplateId = 2L, Type = "System.String" },
                         new { Id = 8L, Name = "Name", NodeTemplateId = 3L, Type = "System.String" },
-                        new { Id = 9L, Name = "Url", NodeTemplateId = 3L, Type = "System.String" },
-                        new { Id = 10L, Name = "Content", NodeTemplateId = 3L, Type = "System.String" },
-                        new { Id = 11L, Name = "Content-Type", NodeTemplateId = 3L, Type = "System.String" }
+                        new { Id = 9L, Name = "Key", NodeTemplateId = 3L, Type = "System.String" },
+                        new { Id = 10L, Name = "Value", NodeTemplateId = 3L, Type = "System.String" },
+                        new { Id = 11L, Name = "Name", NodeTemplateId = 4L, Type = "System.String" },
+                        new { Id = 12L, Name = "Device", NodeTemplateId = 4L, Type = "System.Guid" },
+                        new { Id = 13L, Name = "Field", NodeTemplateId = 4L, Type = "System.String" }
                     );
                 });
 
@@ -134,7 +142,8 @@ namespace Asdf.Application.Database.Migrations
                     b.HasData(
                         new { Id = 1L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpGetNode", Name = "HTTP GET" },
                         new { Id = 2L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpPostNode", Name = "HTTP POST" },
-                        new { Id = 3L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpGetNode", Name = "ATTRIBUTE" }
+                        new { Id = 3L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.AttributeNode", Name = "ATTRIBUTE" },
+                        new { Id = 4L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.MqttPublishNode", Name = "MQTT PUBLISH" }
                     );
                 });
 
@@ -152,9 +161,13 @@ namespace Asdf.Application.Database.Migrations
 
                     b.Property<long?>("RootId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RootId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Triggers");
 
@@ -188,7 +201,9 @@ namespace Asdf.Application.Database.Migrations
                 {
                     b.HasBaseType("Asdf.Domain.Actions.Node");
 
-                    b.Property<string>("Attributes");
+                    b.Property<string>("Key");
+
+                    b.Property<string>("Value");
 
                     b.ToTable("AttributeNode");
 
@@ -250,6 +265,22 @@ namespace Asdf.Application.Database.Migrations
                     b.HasDiscriminator().HasValue("LogNode");
                 });
 
+            modelBuilder.Entity("Asdf.Domain.Actions.MqttPublishNode", b =>
+                {
+                    b.HasBaseType("Asdf.Domain.Actions.Node");
+
+                    b.Property<Guid>("Device");
+
+                    b.Property<string>("Field")
+                        .HasColumnName("MqttPublishNode_Field");
+
+                    b.Property<string>("Topic");
+
+                    b.ToTable("MqttPublishNode");
+
+                    b.HasDiscriminator().HasValue("MqttPublishNode");
+                });
+
             modelBuilder.Entity("Asdf.Domain.Actions.TemplateNode", b =>
                 {
                     b.HasBaseType("Asdf.Domain.Actions.Node");
@@ -283,6 +314,10 @@ namespace Asdf.Application.Database.Migrations
                     b.HasOne("Asdf.Domain.Actions.Node", "Pass")
                         .WithOne()
                         .HasForeignKey("Asdf.Domain.Actions.Node", "PassId");
+
+                    b.HasOne("Asdf.Domain.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Asdf.Domain.Devices.Device", b =>
@@ -315,6 +350,10 @@ namespace Asdf.Application.Database.Migrations
                     b.HasOne("Asdf.Domain.Actions.Node", "Root")
                         .WithMany()
                         .HasForeignKey("RootId");
+
+                    b.HasOne("Asdf.Domain.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

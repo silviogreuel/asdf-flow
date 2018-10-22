@@ -13,6 +13,11 @@
     <PackageReference Include="RawRabbit.Operations.Tools" Version="2.0.0-rc5" />
     <PackageReference Include="Serilog" Version="2.7.1" />
     <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.0" />
+    <PackageReference Include="System.Net.Mqtt" Version="0.5.42-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Asdf.Kernel\Asdf.Kernel.csproj" />
   </ItemGroup>
 
   <ItemGroup>

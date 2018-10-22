@@ -18,6 +18,7 @@ namespace Asdf.Application.Database
         public DbSet<DecisionNode> Decisions { get; set; }
         public DbSet<HttpGetNode> HttpGets { get; set; }
         public DbSet<HttpPostNode> HttpPosts { get; set; }
+        public DbSet<MqttPublishNode> MqttPublish { get; set; }
         public DbSet<TemplateNode> TemplateNode { get; set; }
         public DbSet<AttributeNode> Attributes { get; set; }
         public DbSet<LogNode> Logs { get; set; }
@@ -54,14 +55,6 @@ namespace Asdf.Application.Database
             {
                 b.Property(p => p.Id)
                     .ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<AttributeNode>(b =>
-            {
-                b.Property(e => e.Attributes)
-                    .HasConversion(
-                        d => JsonConvert.SerializeObject(d, Formatting.None),
-                        s => JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(s));
             });
 
             modelBuilder.Entity<Trigger>(b =>

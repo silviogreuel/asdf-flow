@@ -5,6 +5,7 @@ using RawRabbit.Configuration;
 using System;
 using System.IO;
 using Asdf.Application.Processor.Enrichers.PlainText;
+using Asdf.Kernel.Utils;
 using Microsoft.Extensions.Configuration;
 using RawRabbit.Configuration.BasicPublish;
 using Serilog;
@@ -60,6 +61,16 @@ class Program
                 Console.WriteLine(msg);
                 await Task.CompletedTask;
             });
+
+            GlobalBus.Publish = async (exchange, routing, body) =>
+            {
+                await _bus.BasicPublishAsync(new BasicPublishConfiguration()
+                {
+                    ExchangeName = exchange,
+                    RoutingKey = routing,
+                    Body =  body
+                });
+            };
         }
     }
 }

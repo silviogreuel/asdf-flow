@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Asdf.Domain.Users;
 
 namespace Asdf.Domain.Actions
 {
@@ -9,14 +10,16 @@ namespace Asdf.Domain.Actions
     {
         public long? Id { get; set; }
         public string Name { get; set; }
+        public virtual User User { get; set; }
         public virtual Node Pass { get; set; }
         public virtual Node Fail { get; set; }
 
         public Node() { }
 
-        public Node(string name)
+        public Node(User user, string name)
         {
             this.Name = name;
+            this.User = user;
         }
 
         public void AddPass(Node pass)

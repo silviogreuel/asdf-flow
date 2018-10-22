@@ -8,5 +8,6 @@ namespace Asdf.Domain.Templates
         public long? NodeTemplateId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public string Value { get; set; }
     }
 }

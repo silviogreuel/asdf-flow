@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Asdf.Domain.Actions;
 using Asdf.Kernel;
 
@@ -16,5 +17,6 @@ namespace Asdf.Domain.Templates
 
         public Type GetActivatorType() => Type.GetType($"{ActivatorType}, {ActivatorAssembly}");
         public Node Activate(params object[] args) => (Node)Activator.CreateInstance(GetActivatorType(), args);
+        public object[] GetFields() => Fields.Select(f => f.Value).ToList().ToArray();
     }
 }

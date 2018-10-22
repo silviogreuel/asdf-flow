@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Asdf.Domain.Users;
 
 namespace Asdf.Domain.Actions
 {
@@ -10,7 +11,7 @@ namespace Asdf.Domain.Actions
 
         public TemplateNode() { }
 
-        public TemplateNode(string name, string field, string template) : base(name)
+        public TemplateNode(User user, string name, string field, string template) : base(user, name)
         {
             this.Field = field;
             this.Template = template;

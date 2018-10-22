@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using Asdf.Domain.Users;
 
 namespace Asdf.Domain.Actions
 {
@@ -13,7 +14,7 @@ namespace Asdf.Domain.Actions
 
         public HttpPostNode() { }
 
-        public HttpPostNode(string name, string url, string content, string contentType) : base(name)
+        public HttpPostNode(User user, string name, string url, string content, string contentType) : base(user, name)
         {
             this.Url = url;
             this.Content = content;

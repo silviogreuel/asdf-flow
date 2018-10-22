@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Asdf.Application.Database.Seeds;
+using Asdf.Domain.Actions;
+using Asdf.Domain.Templates;
 using Microsoft.EntityFrameworkCore;
 
 namespace Asdf.Application.Database.Migrator
@@ -20,20 +23,50 @@ namespace Asdf.Application.Database.Migrator
     {
         static void Main(string[] args)
         {
-            using (var db = new MigrationContext())
+            using (var db = new AsdfContext())
             {
-                foreach (var migration in db.Database.GetPendingMigrations())
+                var templates = new List<NodeTemplate>
                 {
-                    Console.WriteLine(migration);
-                }
+                    new NodeTemplate
+                    {
+                        Name = "HTTP GET",
+                        ActivatorType = typeof(HttpGetNode).FullName,
+                        ActivatorAssembly = typeof(HttpGetNode).Assembly.FullName,
+                        Fields = new List<FieldTemplate>
+                        {
+                            new FieldTemplate() { Name = "Name", Type = typeof(String).FullName },
+                            new FieldTemplate() { Name = "Url", Type = typeof(String).FullName },
+                            new FieldTemplate() { Name = "Field", Type = typeof(String).FullName },
+                        }
+                    },
+                    new NodeTemplate
+                    {
+                        Name = "HTTP POST",
+                        ActivatorType = typeof(HttpPostNode).FullName,
+                        ActivatorAssembly = typeof(HttpPostNode).Assembly.FullName,
+                        Fields = new List<FieldTemplate>
+                        {
+                            new FieldTemplate() { Name = "Name", Type = typeof(String).FullName },
+                            new FieldTemplate() { Name = "Url", Type = typeof(String).FullName },
+                            new FieldTemplate() { Name = "Content", Type = typeof(String).FullName },
+                            new FieldTemplate() { Name = "Content-Type", Type = typeof(String).FullName },
+                        }
+                    },
+                    new NodeTemplate
+                    {
+                        Name = "MQTT PUBLISH",
+                        ActivatorType = typeof(HttpGetNode).FullName,
+                        ActivatorAssembly = typeof(HttpGetNode).Assembly.FullName,
+                        Fields = new List<FieldTemplate>
+                        {
+                            new FieldTemplate() { Name = "Name", Type = typeof(String).FullName },
+                            new FieldTemplate() { Name = "Device", Type = typeof(Guid).FullName },
+                            new FieldTemplate() { Name = "Field", Type = typeof(String).FullName },
+                        }
+                    }
+                };
 
-                db.Database.Migrate();
-
-                foreach (var migration in db.Database.GetAppliedMigrations())
-                {
-                    Console.WriteLine(migration);
-                }
-
+                db.AddRange(templates);
                 db.SaveChanges();
             }
         }

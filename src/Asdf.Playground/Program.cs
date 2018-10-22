@@ -60,17 +60,17 @@ namespace Asdf.Playground
                     },
                     new NodeTemplate
                     {
-                        Name = "ATTRIBUTE",
+                        Name = "MQTT TOPIC",
                         ActivatorType = typeof(HttpGetNode).FullName,
                         ActivatorAssembly = typeof(HttpGetNode).Assembly.FullName,
                         Fields = new List<FieldTemplate>
                         {
                             new FieldTemplate() { Name = "Name", Type = typeof(String).FullName },
-                            new FieldTemplate() { Name = "Url", Type = typeof(String).FullName },
+                            new FieldTemplate() { Name = "Device", Type = typeof(Guid).FullName },
+                            new FieldTemplate() { Name = "Topic", Type = typeof(String).FullName },
                             new FieldTemplate() { Name = "Content", Type = typeof(String).FullName },
-                            new FieldTemplate() { Name = "Content-Type", Type = typeof(String).FullName },
                         }
-                    },
+                    }
 
                 };
 
@@ -92,7 +92,7 @@ namespace Asdf.Playground
                 long? id = 1;
                 var flow = db.Flows.Find(id);
 
-                var buttonTrigger = new ButtonTrigger("Manual");
+                var buttonTrigger = new ButtonTrigger(new User(), "Manual");
 
                 flow.AddTrigger(buttonTrigger);
 
@@ -104,11 +104,7 @@ namespace Asdf.Playground
                 long? id = 1;
                 var trigger = db.Triggers.Find(id);
 
-                var attributes = new Dictionary<string, dynamic>
-                {
-                    { "cnpj", "00447041000120" },
-                };
-                var attributeNode = new AttributeNode("Adding CNPJ", attributes);
+                var attributeNode = new AttributeNode(new User(), "Adding CNPJ", "cnpj", "00447041000120");
 
                 trigger.AddRoot(attributeNode);
 

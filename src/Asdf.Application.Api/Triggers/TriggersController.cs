@@ -7,10 +7,16 @@ namespace Asdf.Application.Api.Triggers
     [ApiController]
     public class TriggersController : AuthorizeController
     {
-        [HttpGet("sample")]
-        public object GetSample()
+        //TODO: should be a template to
+        [HttpGet]
+        public IActionResult GetTriggers()
         {
-            return new {data = "penis"};
+            return Ok(new {
+                triggers = new []
+                {
+                    "Button",
+                    "MQTT"
+                }});
         }
     }
 }

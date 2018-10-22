@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Asdf.Domain.Users;
 
 namespace Asdf.Domain.Actions
 {
@@ -11,7 +12,7 @@ namespace Asdf.Domain.Actions
 
         public DecisionNode() { }
 
-        public DecisionNode(string name, string left, OperationType operation, string right) : base(name)
+        public DecisionNode(User user, string name, string left, OperationType operation, string right) : base(user, name)
         {
             this.Left = left;
             this.Operation = operation;

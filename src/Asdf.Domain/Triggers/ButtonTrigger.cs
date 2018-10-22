@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Asdf.Domain.Users;
 
 namespace Asdf.Domain.Triggers
 {
@@ -6,7 +7,7 @@ namespace Asdf.Domain.Triggers
     {
         public ButtonTrigger() { }
 
-        public ButtonTrigger(string name) : base(name)
+        public ButtonTrigger(User user, string name) : base(user, name)
         {
             this.Context = new Dictionary<string, dynamic>();
         }

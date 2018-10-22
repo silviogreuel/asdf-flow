@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Asdf.Domain.Users;
 
 namespace Asdf.Domain.Actions
 {
@@ -11,7 +12,7 @@ namespace Asdf.Domain.Actions
 
         public HttpGetNode() { }
 
-        public HttpGetNode(string name, string url, string field) : base(name)
+        public HttpGetNode(User user, string name, string url, string field) : base(user, name)
         {
             this.Url = url;
             this.Field = field;
