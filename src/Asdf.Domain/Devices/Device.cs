@@ -16,6 +16,8 @@ namespace Asdf.Domain.Devices
         public Device(User user, string name, Guid token)
         {
             this.Name = name;
+            this.User = user;
+            this.Token = token;
         }
 
         public Device(User user, string name) 
