@@ -106,7 +106,6 @@ namespace Asdf.Application.Database.Migrations
                     Content = table.Column<string>(nullable: true),
                     ContentType = table.Column<string>(nullable: true),
                     Level = table.Column<string>(nullable: true),
-                    Topic = table.Column<string>(nullable: true),
                     Device = table.Column<Guid>(nullable: true),
                     MqttPublishNode_Field = table.Column<string>(nullable: true),
                     TemplateNode_Field = table.Column<string>(nullable: true),
@@ -145,7 +144,8 @@ namespace Asdf.Application.Database.Migrations
                     RootId = table.Column<long>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
                     Context = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false)
+                    Discriminator = table.Column<string>(nullable: false),
+                    Topic = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -199,7 +199,8 @@ namespace Asdf.Application.Database.Migrations
                     { 1L, "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Asdf.Domain.Actions.HttpGetNode", "HTTP GET" },
                     { 2L, "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Asdf.Domain.Actions.HttpPostNode", "HTTP POST" },
                     { 3L, "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Asdf.Domain.Actions.AttributeNode", "ATTRIBUTE" },
-                    { 4L, "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Asdf.Domain.Actions.MqttPublishNode", "MQTT PUBLISH" }
+                    { 4L, "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Asdf.Domain.Actions.MqttPublishNode", "MQTT PUBLISH" },
+                    { 5L, "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Asdf.Domain.Actions.DecisionNode", "DECISION" }
                 });
 
             migrationBuilder.InsertData(
@@ -208,18 +209,22 @@ namespace Asdf.Application.Database.Migrations
                 values: new object[,]
                 {
                     { 1L, "Name", 1L, "System.String", null },
-                    { 2L, "Url", 1L, "System.String", null },
-                    { 3L, "Field", 1L, "System.String", null },
-                    { 4L, "Name", 2L, "System.String", null },
-                    { 5L, "Url", 2L, "System.String", null },
-                    { 6L, "Content", 2L, "System.String", null },
-                    { 7L, "Content-Type", 2L, "System.String", null },
-                    { 8L, "Name", 3L, "System.String", null },
-                    { 9L, "Key", 3L, "System.String", null },
-                    { 10L, "Value", 3L, "System.String", null },
-                    { 11L, "Name", 4L, "System.String", null },
+                    { 15L, "Left Field", 5L, "System.String", null },
+                    { 14L, "Name", 5L, "System.String", null },
+                    { 13L, "Field", 4L, "System.String", null },
                     { 12L, "Device", 4L, "System.Guid", null },
-                    { 13L, "Field", 4L, "System.String", null }
+                    { 11L, "Name", 4L, "System.String", null },
+                    { 10L, "Value", 3L, "System.String", null },
+                    { 16L, "Operation", 5L, "Asdf.Domain.Actions.OperationType", null },
+                    { 9L, "Key", 3L, "System.String", null },
+                    { 7L, "Content-Type", 2L, "System.String", null },
+                    { 6L, "Content", 2L, "System.String", null },
+                    { 5L, "Url", 2L, "System.String", null },
+                    { 4L, "Name", 2L, "System.String", null },
+                    { 3L, "Field", 1L, "System.String", null },
+                    { 2L, "Url", 1L, "System.String", null },
+                    { 8L, "Name", 3L, "System.String", null },
+                    { 17L, "Right Field", 5L, "System.String", null }
                 });
 
             migrationBuilder.CreateIndex(

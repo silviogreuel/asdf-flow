@@ -120,7 +120,11 @@ namespace Asdf.Application.Database.Migrations
                         new { Id = 10L, Name = "Value", NodeTemplateId = 3L, Type = "System.String" },
                         new { Id = 11L, Name = "Name", NodeTemplateId = 4L, Type = "System.String" },
                         new { Id = 12L, Name = "Device", NodeTemplateId = 4L, Type = "System.Guid" },
-                        new { Id = 13L, Name = "Field", NodeTemplateId = 4L, Type = "System.String" }
+                        new { Id = 13L, Name = "Field", NodeTemplateId = 4L, Type = "System.String" },
+                        new { Id = 14L, Name = "Name", NodeTemplateId = 5L, Type = "System.String" },
+                        new { Id = 15L, Name = "Left Field", NodeTemplateId = 5L, Type = "System.String" },
+                        new { Id = 16L, Name = "Operation", NodeTemplateId = 5L, Type = "Asdf.Domain.Actions.OperationType" },
+                        new { Id = 17L, Name = "Right Field", NodeTemplateId = 5L, Type = "System.String" }
                     );
                 });
 
@@ -143,7 +147,8 @@ namespace Asdf.Application.Database.Migrations
                         new { Id = 1L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpGetNode", Name = "HTTP GET" },
                         new { Id = 2L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.HttpPostNode", Name = "HTTP POST" },
                         new { Id = 3L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.AttributeNode", Name = "ATTRIBUTE" },
-                        new { Id = 4L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.MqttPublishNode", Name = "MQTT PUBLISH" }
+                        new { Id = 4L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.MqttPublishNode", Name = "MQTT PUBLISH" },
+                        new { Id = 5L, ActivatorAssembly = "Asdf.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActivatorType = "Asdf.Domain.Actions.DecisionNode", Name = "DECISION" }
                     );
                 });
 
@@ -274,8 +279,6 @@ namespace Asdf.Application.Database.Migrations
                     b.Property<string>("Field")
                         .HasColumnName("MqttPublishNode_Field");
 
-                    b.Property<string>("Topic");
-
                     b.ToTable("MqttPublishNode");
 
                     b.HasDiscriminator().HasValue("MqttPublishNode");
@@ -303,6 +306,17 @@ namespace Asdf.Application.Database.Migrations
                     b.ToTable("ButtonTrigger");
 
                     b.HasDiscriminator().HasValue("ButtonTrigger");
+                });
+
+            modelBuilder.Entity("Asdf.Domain.Triggers.MqttTrigger", b =>
+                {
+                    b.HasBaseType("Asdf.Domain.Triggers.Trigger");
+
+                    b.Property<string>("Topic");
+
+                    b.ToTable("MqttTrigger");
+
+                    b.HasDiscriminator().HasValue("MqttTrigger");
                 });
 
             modelBuilder.Entity("Asdf.Domain.Actions.Node", b =>

@@ -38,6 +38,13 @@ namespace Asdf.Application.Database.Seeds
                         Name = "MQTT PUBLISH",
                         ActivatorType = typeof(MqttPublishNode).FullName,
                         ActivatorAssembly = typeof(MqttPublishNode).Assembly.FullName,
+                    },
+                    new NodeTemplate
+                    {
+                        Id = 5,
+                        Name = "DECISION",
+                        ActivatorType = typeof(DecisionNode).FullName,
+                        ActivatorAssembly = typeof(DecisionNode).Assembly.FullName,
                     });
 
             return modelBuilder;

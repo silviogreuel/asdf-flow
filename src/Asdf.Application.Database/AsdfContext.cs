@@ -33,6 +33,7 @@ namespace Asdf.Application.Database
         //Triggers
         public DbSet<Trigger> Triggers { get; set; }
         public DbSet<ButtonTrigger> Buttons { get; set; }
+        public DbSet<MqttTrigger> Mqtts { get; set; }
 
         //Devices
         public DbSet<Device> Devices { get; set; }
