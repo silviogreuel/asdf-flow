@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Asdf.Application.Database\Asdf.Application.Database.csproj" />
     <ProjectReference Include="..\Asdf.Kernel\Asdf.Kernel.csproj" />
   </ItemGroup>
 

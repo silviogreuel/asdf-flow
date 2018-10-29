@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Asdf.Domain.Users;
 
@@ -18,6 +19,14 @@ namespace Asdf.Domain.Actions
             this.Operation = operation;
             this.Right = right;
         }
+
+        public DecisionNode(User user, string name, string left, string operation, string right) : base(user, name)
+        {
+            this.Left = left;
+            this.Operation = Enum.Parse<OperationType>(operation, true);
+            this.Right = right;
+        }
+
 
         public override async Task ExecuteAsync(IDictionary<string, dynamic> context)
         {
