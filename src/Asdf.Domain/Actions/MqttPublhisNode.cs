@@ -22,6 +22,7 @@ namespace Asdf.Domain.Actions
 
         public override async Task ExecuteAsync(IDictionary<string, dynamic> context)
         {
+            var exchange = "amq.topic";
             var queue = $"mqtt-subscription-{Device}qos0";
             var payload = Encoding.UTF8.GetBytes(context[Field]);
             await GlobalBus.Publish(string.Empty, queue, payload);

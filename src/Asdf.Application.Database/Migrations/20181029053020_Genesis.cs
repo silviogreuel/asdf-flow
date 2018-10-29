@@ -97,6 +97,7 @@ namespace Asdf.Application.Database.Migrations
                     Discriminator = table.Column<string>(nullable: false),
                     Key = table.Column<string>(nullable: true),
                     Value = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
                     Left = table.Column<string>(nullable: true),
                     Right = table.Column<string>(nullable: true),
                     Operation = table.Column<int>(nullable: true),
@@ -209,22 +210,23 @@ namespace Asdf.Application.Database.Migrations
                 values: new object[,]
                 {
                     { 1L, "Name", 1L, "System.String", null },
-                    { 15L, "Left Field", 5L, "System.String", null },
-                    { 14L, "Name", 5L, "System.String", null },
-                    { 13L, "Field", 4L, "System.String", null },
-                    { 12L, "Device", 4L, "System.Guid", null },
-                    { 11L, "Name", 4L, "System.String", null },
+                    { 16L, "Left Field", 5L, "System.String", null },
+                    { 15L, "Name", 5L, "System.String", null },
+                    { 14L, "Field", 4L, "System.String", null },
+                    { 13L, "Device", 4L, "System.Guid", null },
+                    { 12L, "Name", 4L, "System.String", null },
+                    { 11L, "Type", 3L, "System.String", null },
                     { 10L, "Value", 3L, "System.String", null },
-                    { 16L, "Operation", 5L, "Asdf.Domain.Actions.OperationType", null },
                     { 9L, "Key", 3L, "System.String", null },
+                    { 8L, "Name", 3L, "System.String", null },
                     { 7L, "Content-Type", 2L, "System.String", null },
                     { 6L, "Content", 2L, "System.String", null },
                     { 5L, "Url", 2L, "System.String", null },
                     { 4L, "Name", 2L, "System.String", null },
                     { 3L, "Field", 1L, "System.String", null },
                     { 2L, "Url", 1L, "System.String", null },
-                    { 8L, "Name", 3L, "System.String", null },
-                    { 17L, "Right Field", 5L, "System.String", null }
+                    { 17L, "Operation", 5L, "Asdf.Domain.Actions.OperationType", null },
+                    { 18L, "Right Field", 5L, "System.String", null }
                 });
 
             migrationBuilder.CreateIndex(

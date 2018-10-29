@@ -118,13 +118,14 @@ namespace Asdf.Application.Database.Migrations
                         new { Id = 8L, Name = "Name", NodeTemplateId = 3L, Type = "System.String" },
                         new { Id = 9L, Name = "Key", NodeTemplateId = 3L, Type = "System.String" },
                         new { Id = 10L, Name = "Value", NodeTemplateId = 3L, Type = "System.String" },
-                        new { Id = 11L, Name = "Name", NodeTemplateId = 4L, Type = "System.String" },
-                        new { Id = 12L, Name = "Device", NodeTemplateId = 4L, Type = "System.Guid" },
-                        new { Id = 13L, Name = "Field", NodeTemplateId = 4L, Type = "System.String" },
-                        new { Id = 14L, Name = "Name", NodeTemplateId = 5L, Type = "System.String" },
-                        new { Id = 15L, Name = "Left Field", NodeTemplateId = 5L, Type = "System.String" },
-                        new { Id = 16L, Name = "Operation", NodeTemplateId = 5L, Type = "Asdf.Domain.Actions.OperationType" },
-                        new { Id = 17L, Name = "Right Field", NodeTemplateId = 5L, Type = "System.String" }
+                        new { Id = 11L, Name = "Type", NodeTemplateId = 3L, Type = "System.String" },
+                        new { Id = 12L, Name = "Name", NodeTemplateId = 4L, Type = "System.String" },
+                        new { Id = 13L, Name = "Device", NodeTemplateId = 4L, Type = "System.Guid" },
+                        new { Id = 14L, Name = "Field", NodeTemplateId = 4L, Type = "System.String" },
+                        new { Id = 15L, Name = "Name", NodeTemplateId = 5L, Type = "System.String" },
+                        new { Id = 16L, Name = "Left Field", NodeTemplateId = 5L, Type = "System.String" },
+                        new { Id = 17L, Name = "Operation", NodeTemplateId = 5L, Type = "Asdf.Domain.Actions.OperationType" },
+                        new { Id = 18L, Name = "Right Field", NodeTemplateId = 5L, Type = "System.String" }
                     );
                 });
 
@@ -207,6 +208,8 @@ namespace Asdf.Application.Database.Migrations
                     b.HasBaseType("Asdf.Domain.Actions.Node");
 
                     b.Property<string>("Key");
+
+                    b.Property<string>("Type");
 
                     b.Property<string>("Value");
 

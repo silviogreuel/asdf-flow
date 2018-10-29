@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Asdf.Application.Database\Asdf.Application.Database.csproj" />
+    <ProjectReference Include="..\Asdf.Domain\Asdf.Domain.csproj" />
     <ProjectReference Include="..\Asdf.Kernel\Asdf.Kernel.csproj" />
   </ItemGroup>
 

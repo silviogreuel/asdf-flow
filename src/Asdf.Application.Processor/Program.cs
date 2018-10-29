@@ -61,7 +61,7 @@ class Program
             _bus = RawRabbitFactory.CreateSingleton(options);
 
             await _bus.DeclareQueueAsync<string>();
-            await _bus.BindQueueAsync("string", "amq.topic", "*");
+            await _bus.BindQueueAsync("string", "amq.topic", "#");
 
             await _bus.SubscribeAsync<string>(async (msg) =>
             {
@@ -99,10 +99,6 @@ class Program
                 }
 
                 await Task.CompletedTask;
-            }, async ctx =>
-            {
-                var message = ctx.GetMessage();
-                var routingKey = ctx.GetRoutingKey();
             });
 
             GlobalBus.Publish = async (exchange, routing, body) =>

@@ -104,7 +104,7 @@ namespace Asdf.Playground
                 long? id = 1;
                 var trigger = db.Triggers.Find(id);
 
-                var attributeNode = new AttributeNode(new User(), "Adding CNPJ", "cnpj", "00447041000120");
+                var attributeNode = new AttributeNode(new User(), "Adding CNPJ", "cnpj", "00447041000120", "System.String");
 
                 trigger.AddRoot(attributeNode);
 
