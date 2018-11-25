@@ -65,8 +65,10 @@ class Program
 
             await _bus.SubscribeAsync<string>(async (msg) =>
             {
+                Log.Logger.Information(msg);
                 var fields = msg
                     .Split("\n")
+                    .Where(field => field != "!")
                     .Select(line => new DynamicField(line))
                     .ToList();
 

@@ -45,7 +45,9 @@ namespace Asdf.Application.Database
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseNpgsql("Host=localhost;Database=iot;Username=iot;Password=iot", o => o.MigrationsAssembly("Asdf.Application.Database"))
+                //.UseNpgsql("Host=database;Database=iot;Username=iot;Password=iot", o => o.MigrationsAssembly("Asdf.Application.Database"))
+                .UseNpgsql("Host=greuel.com.br;Database=iot;Username=iot;Password=iot", o => o.MigrationsAssembly("Asdf.Application.Database"))
+                //.UseNpgsql("Host=localhost;Database=iot;Username=iot;Password=iot", o => o.MigrationsAssembly("Asdf.Application.Database"))
                 .EnableSensitiveDataLogging();
         }
 

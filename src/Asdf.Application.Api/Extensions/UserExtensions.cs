@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 
 namespace Asdf.Application.Api.Extensions
 {
@@ -6,7 +7,14 @@ namespace Asdf.Application.Api.Extensions
     {
         public static string GetUserId(this ClaimsPrincipal principal)
         {
-            return principal.FindFirst(ClaimTypes.NameIdentifier).Value;
+            try
+            {
+                return principal.FindFirst(ClaimTypes.NameIdentifier).Value;
+            }
+            catch (Exception e)
+            {
+                return GetUserName(principal);
+            }
         }
 
         public static string GetUserName(this ClaimsPrincipal principal)

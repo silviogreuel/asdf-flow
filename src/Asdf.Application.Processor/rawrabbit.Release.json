@@ -1,9 +1,9 @@
 {
 	"Username": "iot",
 	"Password": "iot",
-	"VirtualHost": "/",
+	"VirtualHost": "yqibdcao",
 	"Port": 5672,
-	"Hostnames": [ "broker" ],
+	"Hostnames": [ "athletic-prawn.rmq.cloudamqp.com" ],
 	"RequestTimeout": "00:00:10",
 	"PublishConfirmTimeout": "00:00:01",
 	"RecoveryInterval": "00:00:10",
