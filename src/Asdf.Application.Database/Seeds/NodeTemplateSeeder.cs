@@ -45,6 +45,13 @@ namespace Asdf.Application.Database.Seeds
                         Name = "DECISION",
                         ActivatorType = typeof(DecisionNode).FullName,
                         ActivatorAssembly = typeof(DecisionNode).Assembly.FullName,
+                    },
+                    new NodeTemplate
+                    {
+                        Id = 6,
+                        Name = "GPIO",
+                        ActivatorType = typeof(GpioNode).FullName,
+                        ActivatorAssembly = typeof(GpioNode).Assembly.FullName,
                     });
 
             return modelBuilder;

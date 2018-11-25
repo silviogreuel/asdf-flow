@@ -68,7 +68,7 @@ class Program
                 Log.Logger.Information(msg);
                 var fields = msg
                     .Split("\n")
-                    .Where(field => field != "!")
+                    .Where(field => field.Split(":").Length == 3)
                     .Select(line => new DynamicField(line))
                     .ToList();
 
