@@ -3,15 +3,17 @@ using System;
 using Asdf.Application.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Asdf.Application.Database.Migrations
 {
     [DbContext(typeof(AsdfContext))]
-    partial class AsdfContextModelSnapshot : ModelSnapshot
+    [Migration("20181125194752_Guard")]
+    partial class Guard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,38 +242,11 @@ namespace Asdf.Application.Database.Migrations
                     b.HasDiscriminator().HasValue("DecisionNode");
                 });
 
-            modelBuilder.Entity("Asdf.Domain.Actions.GpioNode", b =>
-                {
-                    b.HasBaseType("Asdf.Domain.Actions.Node");
-
-                    b.Property<Guid>("Device");
-
-                    b.Property<string>("Gpio");
-
-                    b.Property<int>("Status");
-
-                    b.ToTable("GpioNode");
-
-                    b.HasDiscriminator().HasValue("GpioNode");
-                });
-
-            modelBuilder.Entity("Asdf.Domain.Actions.GuardNode", b =>
-                {
-                    b.HasBaseType("Asdf.Domain.Actions.Node");
-
-                    b.Property<string>("Field");
-
-                    b.ToTable("GuardNode");
-
-                    b.HasDiscriminator().HasValue("GuardNode");
-                });
-
             modelBuilder.Entity("Asdf.Domain.Actions.HttpGetNode", b =>
                 {
                     b.HasBaseType("Asdf.Domain.Actions.Node");
 
-                    b.Property<string>("Field")
-                        .HasColumnName("HttpGetNode_Field");
+                    b.Property<string>("Field");
 
                     b.Property<string>("Url");
 
@@ -311,8 +286,7 @@ namespace Asdf.Application.Database.Migrations
                 {
                     b.HasBaseType("Asdf.Domain.Actions.Node");
 
-                    b.Property<Guid>("Device")
-                        .HasColumnName("MqttPublishNode_Device");
+                    b.Property<Guid>("Device");
 
                     b.Property<string>("Field")
                         .HasColumnName("MqttPublishNode_Field");

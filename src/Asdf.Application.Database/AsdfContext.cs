@@ -16,9 +16,11 @@ namespace Asdf.Application.Database
         //Actions
         public DbSet<Node> Nodes { get; set; }
         public DbSet<DecisionNode> Decisions { get; set; }
+        public DbSet<GuardNode> Guards { get; set; }
         public DbSet<HttpGetNode> HttpGets { get; set; }
         public DbSet<HttpPostNode> HttpPosts { get; set; }
         public DbSet<MqttPublishNode> MqttPublish { get; set; }
+        public DbSet<GpioNode> Gpios { get; set; }
         public DbSet<TemplateNode> TemplateNode { get; set; }
         public DbSet<AttributeNode> Attributes { get; set; }
         public DbSet<LogNode> Logs { get; set; }

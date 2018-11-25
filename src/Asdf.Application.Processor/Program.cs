@@ -9,6 +9,7 @@ using System.Linq;
 using Asdf.Application.Database;
 using Asdf.Application.Processor.Dynamics;
 using Asdf.Application.Processor.Enrichers.PlainText;
+using Asdf.Domain.Triggers;
 using Asdf.Kernel.Utils;
 using Castle.Core.Internal;
 using Microsoft.EntityFrameworkCore;
@@ -85,14 +86,13 @@ namespace Asdf.Application.Processor
                 using (var db = new AsdfContext())
                 {
                     Guid userToken = (Guid)token.Value;
-                    var flows = await db.Flows.Where(f => f.User.Token == userToken).ToListAsync();
+                    var flows = await db.Flows.Where(f => f.User.Token == userToken && f.Trigger is MqttTrigger).ToListAsync();
                     if (flows.IsNullOrEmpty())
                     {
                         Log.Logger.Information("no flows"); 
                         return;
                     }
                     Log.Logger.Information($"executing {flows.Count} flows");
-
 
                     foreach (var flow in flows)
                     {

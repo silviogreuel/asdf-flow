@@ -52,6 +52,13 @@ namespace Asdf.Application.Database.Seeds
                         Name = "GPIO",
                         ActivatorType = typeof(GpioNode).FullName,
                         ActivatorAssembly = typeof(GpioNode).Assembly.FullName,
+                    },
+                    new NodeTemplate
+                    {
+                        Id = 7,
+                        Name = "GUARD",
+                        ActivatorType = typeof(GuardNode).FullName,
+                        ActivatorAssembly = typeof(GuardNode).Assembly.FullName,
                     });
 
             return modelBuilder;

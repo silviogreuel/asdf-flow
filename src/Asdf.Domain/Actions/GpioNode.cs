@@ -14,6 +14,8 @@ namespace Asdf.Domain.Actions
         public string Gpio { get; set; }
         public GpioStatusType Status { get; set; }
 
+        public GpioNode() { }
+
         public GpioNode(User user, string name, string device, string gpio, string status) : base(user, name)
         {
             this.Device = Guid.Parse(device);

@@ -31,6 +31,9 @@ namespace Asdf.Application.Api.Buttons
                 await button.ExecuteAsync();
             }
 
+            db.UpdateRange(buttons);
+            await db.SaveChangesAsync();
+
             return Ok();
         }
 

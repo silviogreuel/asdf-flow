@@ -37,7 +37,11 @@ namespace Asdf.Application.Database.Seeds
 
                     new FieldTemplate() { Id = 19, NodeTemplateId = 6, Name = "Name", Type = typeof(String).FullName },
                     new FieldTemplate() { Id = 20, NodeTemplateId = 6, Name = "Gpio", Type = typeof(String).FullName },
-                    new FieldTemplate() { Id = 21, NodeTemplateId = 6, Name = "Status", Type = typeof(GpioStatusType).FullName }
+                    new FieldTemplate() { Id = 21, NodeTemplateId = 6, Name = "Status", Type = typeof(GpioStatusType).FullName },
+
+                    new FieldTemplate() { Id = 22, NodeTemplateId = 7, Name = "Name", Type = typeof(String).FullName },
+                    new FieldTemplate() { Id = 23, NodeTemplateId = 7, Name = "Field", Type = typeof(String).FullName }
+
             );
 
             return modelBuilder;
