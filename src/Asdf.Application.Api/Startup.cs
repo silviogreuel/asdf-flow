@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Text;
 using Asdf.Application.Api.Auth;
 using Asdf.Application.Database;
+using Asdf.Kernel.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,12 +14,30 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using RawRabbit;
+using RawRabbit.Configuration;
+using RawRabbit.Configuration.BasicPublish;
+using RawRabbit.Instantiation;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Asdf.Application.Api
 {
+    public static class Env
+    {
+        public static string Name()
+        {
+#if (DEBUG)
+            return "Debug";
+#else
+            return "Release";
+#endif
+        }
+    }
+
     public class Startup
     {
+        public static RawRabbit.Instantiation.Disposable.BusClient _bus;
+            
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +47,29 @@ namespace Asdf.Application.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile($"rawrabbit.{Env.Name()}.json")
+                .Build()
+                .Get<RawRabbitConfiguration>();
+
+            var rabbitOptions = new RawRabbitOptions()
+            {
+                ClientConfiguration = configuration
+            };
+
+            _bus = RawRabbitFactory.CreateSingleton(rabbitOptions);
+
+             GlobalBus.Publish = async (exchange, routing, body) =>
+            {
+                await _bus.BasicPublishAsync(new BasicPublishConfiguration()
+                {
+                    ExchangeName = exchange,
+                    RoutingKey = routing,
+                    Body =  body
+                });
+            };
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;

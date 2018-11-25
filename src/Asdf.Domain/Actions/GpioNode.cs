@@ -37,4 +37,5 @@ namespace Asdf.Domain.Actions
             Log.Logger.Information($"GPIO {queue} {payload}");
             await GlobalBus.Publish(string.Empty, queue, payload);
         }
+    }
 }

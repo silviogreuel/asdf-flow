@@ -29,9 +29,9 @@ namespace Asdf.Application.Processor
             return "Release";
 #endif
         }
-}
+    }
 
-class Program
+    class Program
     {
         private static IBusClient _bus;
 

@@ -3,15 +3,17 @@ using System;
 using Asdf.Application.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Asdf.Application.Database.Migrations
 {
     [DbContext(typeof(AsdfContext))]
-    partial class AsdfContextModelSnapshot : ModelSnapshot
+    [Migration("20181125061309_GPIO")]
+    partial class GPIO
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
