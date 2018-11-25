@@ -16,7 +16,7 @@ namespace Asdf.Domain.Actions
             if (!context.ContainsKey(format))
                 return string.Empty;
 
-            return context[format];
+            return context[format].ToString();
         }
 
         public object GetFormat(Type formatType)

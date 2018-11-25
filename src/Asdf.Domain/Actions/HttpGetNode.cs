@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Asdf.Domain.Users;
+using Serilog;
 
 namespace Asdf.Domain.Actions
 {
@@ -25,6 +26,8 @@ namespace Asdf.Domain.Actions
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await http.SendAsync(request);
             context[Field] = await response.Content.ReadAsStringAsync();
+
+            Log.Logger.Information($"GET {url} = {Field}:{context[Field]}");
             await NextPassAsync(context);
         }
     }

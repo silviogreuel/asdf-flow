@@ -57,7 +57,6 @@ namespace Asdf.Application.Api.Flows
             return Ok(new {flow});
         }
 
-
         [Route("add-trigger"), HttpPost]
         public async Task<IActionResult> AddTrigger([FromBody]AddTriggerRequest request)
         {

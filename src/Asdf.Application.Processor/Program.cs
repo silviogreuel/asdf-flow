@@ -85,18 +85,23 @@ class Program
                 using (var db = new AsdfContext())
                 {
                     Guid userToken = (Guid)token.Value;
-                    var triggers = await db.Mqtts.Where(f => f.User.Token == userToken).ToListAsync();
-                    if (triggers.IsNullOrEmpty())
-                        return;
-
-                    foreach (var trigger in triggers)
+                    var flows = await db.Flows.Where(f => f.User.Token == userToken).ToListAsync();
+                    if (flows.IsNullOrEmpty())
                     {
-                        trigger.Context = context;
-                        await trigger.ExecuteAsync();
-                        
+                        Log.Logger.Information("no flows"); 
+                        return;
+                    }
+                    Log.Logger.Information($"executing {flows.Count} flows");
+
+
+                    foreach (var flow in flows)
+                    {
+                        flow.Trigger.Context = context;
+                        Log.Logger.Information($"executing flow {flow.Name}");
+                        await flow.Trigger.ExecuteAsync();
                     }
 
-                    db.UpdateRange(triggers);
+                    db.UpdateRange(flows);
                     await db.SaveChangesAsync();
                 }
 

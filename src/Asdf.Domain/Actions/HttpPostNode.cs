@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using Asdf.Domain.Users;
+using Serilog;
 
 namespace Asdf.Domain.Actions
 {
@@ -24,9 +25,15 @@ namespace Asdf.Domain.Actions
         public override async Task ExecuteAsync(IDictionary<string, dynamic> context)
         {
             var http = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, Url);
-            request.Content = new StringContent(Content, Encoding.UTF8, ContentType);
-            await http.SendAsync(request);
+            var url = string.Format(new TemplateFormatProvider(), Url, context);
+            var request = new HttpRequestMessage(HttpMethod.Post, url);
+            var content = string.Format(new TemplateFormatProvider(), Content, context);
+            request.Content = new StringContent(content, Encoding.UTF8, ContentType);
+            var response = await http.SendAsync(request);
+
+            Log.Logger.Information($"POST {url} {ContentType} {content}");
+
+            await NextPassAsync(context);
         }
     }
 }

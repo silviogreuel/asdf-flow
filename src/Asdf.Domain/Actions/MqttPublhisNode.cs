@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Asdf.Domain.Users;
 using Asdf.Kernel.Utils;
+using Serilog;
 
 namespace Asdf.Domain.Actions
 {
@@ -25,6 +26,7 @@ namespace Asdf.Domain.Actions
             var exchange = "amq.topic";
             var queue = $"mqtt-subscription-{Device}qos0";
             var payload = Encoding.UTF8.GetBytes(context[Field]);
+            Log.Logger.Information($"PUBLISH {queue} {payload}");
             await GlobalBus.Publish(string.Empty, queue, payload);
         }
     }

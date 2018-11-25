@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Serilog">
+      <HintPath>C:\Users\greuel\.nuget\packages\serilog\2.7.1\lib\netstandard1.3\Serilog.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Mqtt">
       <HintPath>C:\Users\greuel\.nuget\packages\system.net.mqtt\0.5.42-beta\lib\netstandard2.0\System.Net.Mqtt.dll</HintPath>
     </Reference>

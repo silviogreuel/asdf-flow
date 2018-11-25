@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Asdf.Domain.Users;
+using Serilog;
 
 namespace Asdf.Domain.Actions
 {
@@ -32,6 +33,7 @@ namespace Asdf.Domain.Actions
         {
             var left = context[Left];
             var right = context[Right];
+
             bool result = false;
 
             switch (Operation)
@@ -55,6 +57,8 @@ namespace Asdf.Domain.Actions
                     result = left <= right;
                     break;
             }
+
+            Log.Logger.Information($"executing operation {Left}:{left} {Operation} {Right}:{right} = {result}");
 
             if (result)
                 await NextPassAsync(context);

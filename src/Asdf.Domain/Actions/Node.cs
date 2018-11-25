@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Asdf.Domain.Users;
+using Serilog;
 
 namespace Asdf.Domain.Actions
 {
@@ -47,6 +48,7 @@ namespace Asdf.Domain.Actions
             }
             catch (Exception e)
             {
+                Log.Logger.Information($"EXCEPTION {e.Message}");
                 context["exception"] = e.Message;
             }
         }
@@ -60,6 +62,7 @@ namespace Asdf.Domain.Actions
             }
             catch (Exception e)
             {
+                Log.Logger.Information($"EXCEPTION {e.Message}");
                 context["exception"] = e.Message;
             }
         }
